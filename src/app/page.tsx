@@ -1,6 +1,5 @@
-
+import Container from "@/components/general/container"
 
 export default function Home() {
-  return <>
-  Landing Page</>
+  return <Container>Landing Page</Container>
 }
