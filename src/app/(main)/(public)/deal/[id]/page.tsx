@@ -1,12 +1,12 @@
 import BackBtn from "@/components/btn/back-btn"
-import { Button } from "@/components/ui/button"
+import ClaimBtn from "@/components/btn/claim-btn"
 
 const DealDetailPage = () => {
   return (
     <div className='pt-2'>
       <BackBtn />
-      <main className='flex flex-row gap-2'>
-        <div className=' w-2/3 h-fit'>
+      <main className='flex flex-col md:flex-row gap-2'>
+        <div className='w-full md:w-2/3 h-fit'>
           <Icon />
           <h1 className='text-3xl font-bold mt-4'>Figma Pro - 50% Off</h1>
           <Heading>About This Deal</Heading>
@@ -21,15 +21,13 @@ const DealDetailPage = () => {
             <li>Version control and design system management</li>
           </ul>
         </div>
-        <div className=' w-1/3 h-fit p-4'>
-          <div>
+        <div className='w-full md:w-1/3 h-fit p-4'>
+          <div className="text-center md:text-left mt-5 md:mt-0">
             <p className='text-sm text-muted-foreground'>You will save</p>
             <h2 className='text-3xl font-bold mt-2'>50% - Off</h2>
-            <Button className='w-full mt-5 py-7 text-md rounded-xl'>
-              Claim Deal
-            </Button>
+            <ClaimBtn isAuthenticated={false}/>
           </div>
-          <div className='mt-8 flex flex-col gap-4'>
+          <div className='mt-8 grid grid-cols-2 md:grid-cols-1 row-auto gap-y-4'>
             <Item name='Category' value='Design' />
             <Item name='Valid Until' value='Dec 31, 2025' />
             <Item name='Claimed By' value='234 startups' />
