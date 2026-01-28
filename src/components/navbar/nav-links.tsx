@@ -4,8 +4,8 @@ import React from "react"
 const NavLinks = () => {
   return (
     <nav className='flex gap-4'>
-      <Lnk href={"browse"}>Browse</Lnk>
-      <Lnk href={"dashboard"}>Dashboard</Lnk>
+      <Lnk href={"explore"}>Explore</Lnk>
+      {/* <Lnk href={"dashboard"}>Dashboard</Lnk> */}
     </nav>
   )
 }
