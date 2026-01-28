@@ -1,4 +1,4 @@
-import React from "react"
+import Card from "@/components/general/card"
 
 const ExplorePage = () => {
   return (
@@ -9,8 +9,10 @@ const ExplorePage = () => {
           Discover exclusive SaaS discounts available right now
         </p>
       </div>
-      <div>
-        
+      <div className="grid grid-cols-3 gap-x-10 mt-10">
+        <Card/>
+        <Card/>
+        <Card/>
       </div>
     </main>
   )

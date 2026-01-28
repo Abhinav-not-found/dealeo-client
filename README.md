@@ -1,3 +1,5 @@
+- add new font family, color theme
+- responsive ness
 - add SEO meta data into /, /deal/:id and /browse
 - update code so that it looks like human written
 - add readme for both backend and frontend
