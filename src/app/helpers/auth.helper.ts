@@ -16,25 +16,26 @@ export const handleLogin = async (
   setLoading(true)
 
   try {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    })
-    const data: { message?: string; code?: string }  = await res.json()
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+        credentials: "include",
+      },
+    )
+    const data: { message?: string; code?: string } = await res.json()
     if (!res.ok) {
       switch (data.code) {
-        case "FIELDS_REQUIRED":
-        case "PASSWORD_TOO_SHORT":
-        case "EMAIL_ALREADY_REGISTERED":
+        case "MISSING_FIELDS":
+        case "INVALID_CREDENTIALS":
         case "VALIDATION_ERROR":
-        case "ACCOUNT_BANNED":
-        case "REGISTER_DISABLED":
+        case "EMAIL_EXISTS":
           toast.error(data.message)
           break
-
         default:
-          toast.error(data.message || "Something went wrong")
+          toast.error(data.message || "Login failed")
       }
       return
     }
