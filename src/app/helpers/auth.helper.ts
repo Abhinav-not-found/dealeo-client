@@ -1,6 +1,7 @@
-import { LoginFormState } from "@/components/form/login-form"
-import { toast } from "sonner"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import { LoginFormState } from "@/components/form/login-form"
+import { RegisterFormState } from "@/components/form/register-form"
+import { toast } from "sonner"
 
 type HandleLoginArgs = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -41,6 +42,48 @@ export const handleLogin = async (
     }
     toast.success(data.message)
     router.push("/dashboard")
+    router.refresh()
+  } catch (error) {
+    console.log(error)
+  } finally {
+    setLoading(false)
+  }
+}
+
+export const handleRegister = async (
+  e: React.FormEvent<HTMLFormElement>,
+  form: RegisterFormState,
+  router: AppRouterInstance,
+  { setLoading }: HandleLoginArgs,
+) => {
+  e.preventDefault()
+  setLoading(true)
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+        credentials: "include",
+      },
+    )
+    const data: { message?: string; code?: string } = await res.json()
+    if (!res.ok) {
+      switch (data.code) {
+        case "MISSING_FIELDS":
+        case "EMAIL_EXISTS":
+        case "VALIDATION_ERROR":
+          toast.error(data.message)
+          break
+        default:
+          toast.error(data.message || "Register failed")
+      }
+      return
+    }
+    toast.success(data.message)
+    router.push("/login")
     router.refresh()
   } catch (error) {
     console.log(error)
