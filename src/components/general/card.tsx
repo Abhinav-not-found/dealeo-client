@@ -9,10 +9,10 @@ const Card = () => {
   return (
     <div
       onClick={() => router.push("/deal/123")}
-      className='w-88 h-50 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4 border border-neutral-50 hover:border-neutral-200 hover:-translate-y-1 transition-all cursor-pointer group'
+      className='w-88 h-52 bg-neutral-50 dark:bg-neutral-900 rounded-xl p-5 border border-neutral-50 hover:border-neutral-200 hover:-translate-y-1 transition-all cursor-pointer group'
     >
       <Icon />
-      <div className='space-y-1 mt-2'>
+      <div className='space-y-2 mt-2'>
         <p className='text-xs text-muted-foreground'>Category</p>
         <h2 className='text-lg font-medium tracking-tight'>
           Figma Pro - 50% Off
